@@ -37,7 +37,9 @@ jobs:
         run: |
           echo -e >> /etc/ssl/certs/ca-certificates.crt
           curl https://raw.githubusercontent.com/letsencrypt/pebble/master/test/certs/pebble.minica.pem >> /etc/ssl/certs/ca-certificates.crt
-          curl https://localhost:15000/roots/0
+          curl -k https://127.0.0.1:15000/roots/0
+          echo hello
+          curl -k https://pebble:15000/roots/0
 
 
 
