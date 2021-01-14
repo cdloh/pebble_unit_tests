@@ -35,12 +35,8 @@ jobs:
     steps:
       - name: Run CURL
         run: |
-          echo -n | openssl s_client -connect pebble:15000
-          update-ca-trust enable
-          mkdir -p /usr/share/ca-certificates/extra
-          curl -k https://pebble:15000/roots/0 --output /usr/share/pki/ca-trust-source/pebble_root.crt
-          echo -n | openssl s_client -connect localhost:15000 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > /usr/share/pki/ca-trust-source/pebble_root.crt
-          update-ca-trust extract
+          echo -e >> /etc/ssl/certs/ca-certificates.crt
+          curl https://raw.githubusercontent.com/letsencrypt/pebble/master/test/certs/pebble.minica.pem >> /etc/ssl/certs/ca-certificates.crt
           curl https://localhost:15000/roots/0
 
 
