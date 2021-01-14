@@ -9,7 +9,7 @@ jobs:
     name: Tests
     runs-on: ubuntu-20.04
     container:
-      openresty/openresty:latest
+      openresty/openresty:centos
 
     services:
       redis:
