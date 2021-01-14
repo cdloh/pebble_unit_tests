@@ -41,7 +41,7 @@ jobs:
           curl -k https://pebble:15000/roots/0 --output /usr/share/pki/ca-trust-source/pebble_root.crt
           echo -n | openssl s_client -connect localhost:15000 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > /usr/share/pki/ca-trust-source/pebble_root.crt
           update-ca-trust extract
-          curl https://pebble:15000/roots/0
+          curl https://localhost:15000/roots/0
 
 
 
