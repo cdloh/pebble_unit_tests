@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-20.04
     container:
       openresty/openresty:latest
+
     services:
       redis:
         image: redis
@@ -24,7 +25,7 @@ jobs:
 
       pebble:
         image: letsencrypt/pebble
-        command: pebble -config /test/my-pebble-config.json
+        # command: pebble -config /test/my-pebble-config.json
         ports:
           - 14000:14000  # ACME port
           - 15000:15000  # Management port
