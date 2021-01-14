@@ -1,0 +1,39 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-20.04
+    container:
+      openresty/openresty:latest
+    services:
+      redis:
+        image: redis
+        # Set health checks to wait until redis has started
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+     pebble:
+      image: letsencrypt/pebble
+      command: pebble -config /test/my-pebble-config.json
+      ports:
+        - 14000:14000  # ACME port
+        - 15000:15000  # Management port
+      environment:
+        - PEBBLE_VA_NOSLEEP=1
+
+    steps:
+    - name: Run CURL
+      run: |
+        curl http://pebble:15000
+
+
+
