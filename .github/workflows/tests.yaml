@@ -31,20 +31,15 @@ jobs:
           - 15000:15000  # Management port
         env:
           PEBBLE_VA_NOSLEEP: 1
-        options: >-
-          --net-alias pebble2
-          --net-alias pebble3
-
 
     steps:
       - name: Run CURL
         run: |
-          curl -k https://pebble:15000/roots/0
-          mkdir -p /usr/share/ca-certificates/extra
           update-ca-trust enable
-          curl -k https://pebble2:15000/roots/0 --output /usr/share/pki/ca-trust-source/pebble_root.ca
+          mkdir -p /usr/share/ca-certificates/extra
+          curl -k https://pebble:15000/roots/0 --output /usr/share/pki/ca-trust-source/pebble_root.ca
           update-ca-trust extract
-          curl https://pebble3:15000/roots/0
+          curl https://pebble:15000/roots/0
 
 
 
