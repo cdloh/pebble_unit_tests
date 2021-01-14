@@ -30,7 +30,7 @@ jobs:
           - 14000:14000  # ACME port
           - 15000:15000  # Management port
         env:
-          - PEBBLE_VA_NOSLEEP=1
+          PEBBLE_VA_NOSLEEP: 1
 
     steps:
       - name: Run CURL
