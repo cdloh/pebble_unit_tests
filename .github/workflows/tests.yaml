@@ -35,7 +35,7 @@ jobs:
     steps:
       - name: Run CURL
         run: |
-          curl http://pebble:15000
+          curl -k https://pebble:15000
 
 
 
